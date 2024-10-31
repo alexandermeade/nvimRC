@@ -42,42 +42,12 @@ set encoding=UTF-8
 " NERDTrees File highlighting only the glyph/icon
 " test highlight just the glyph (icons) in nerdtree:
 
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = '🚮'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['c'] = 'C'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp'] = 'C++'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = '📜'
-
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = '💧'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = '💧'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['h'] = 'H'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = 'html'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['lily'] = '🌸'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exe'] = '🔧'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['make'] = '🧰'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['Makefile'] = '🧰'
-
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jsx'] = '⚛️'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico'] = 'ico'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = 'css'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['json'] = '{}'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['png'] = '🖼️'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['mf'] = '🧰'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = '🧰'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['py'] = 'Py'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gleam'] = '🌟'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['s'] = 'S'
-
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = '<>'
-
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['heex'] = '<💧>'
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol='📄'
-
-
-
 " NERDTrees File highlighting only the glyph/icon
 " test highlight just the glyph (icons) in nerdtree:
 " loading the plugin
+
+set clipboard=unnamedplus
+
 let g:webdevicons_enable = 1
 " Enable filetype plugins
 filetype plugin on
@@ -95,16 +65,18 @@ set modifiable
 let g:prettier#config#print_width = 100 " default is 'auto'
 
 function! Orc()
-    execute 'edit C:\Users\allon\AppData\Local\nvim\init.vim'
+    execute 'edit ~/.config/nvim/init.vim'
 endfunction
 
 command! Orc call Orc()
 "plugins
 
 
-
-call plug#begin('~/.vim/plugged')
-    Plug 'ap/vim-css-color'
+call plug#begin('~/.local/share/nvim/plugged')
+   Plug 'evanleck/vim-svelte', 
+   Plug 'mg979/vim-visual-multi', {'branch': 'master'}  
+   Plug 'alexandermeade/skibHighlight'
+   Plug 'ap/vim-css-color'
    Plug 'elixir-editors/vim-elixir'
    Plug 'gleam-lang/gleam.vim'  
    Plug 'vwxyutarooo/nerdtree-devicons-syntax'
@@ -151,7 +123,11 @@ nnoremap l: $
 
 nnoremap <Leader>q :q!<CR>
 nnoremap <Leader>t :sh<CR>
-nnoremap t :vertical terminal<CR>
+nnoremap <C-t> :horizontal terminal<CR>
+nnoremap <S-t> :vertical terminal<CR>
+nnoremap t :tab terminal<CR>
+nnoremap <C-n> <C-\-C-n>
+
 "allows for the deletion of files
 set modifiable
 
@@ -280,9 +256,9 @@ set ffs=unix,dos,mac
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git etc. anyway...
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git etc. anyway...
 set nobackup
 set nowb
 set noswapfile
@@ -329,11 +305,6 @@ map <C-space> ?
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
@@ -501,4 +472,27 @@ function! VisualSelection(direction, extra_filter) range
 endfunction
 
 
+nnoremap <A-j> <Left>
+nnoremap <A-l> <Right>
+nnoremap <A-k> <Down>
+nnoremap <A-i> <Up>
+
+inoremap <A-j> <Left>
+inoremap <A-l> <Right>
+inoremap <A-i> <Up>
+inoremap <A-k> <Down>
+
+vnoremap <A-j> <Left>
+vnoremap <A-l> <Right>
+vnoremap <A-i> <Up>
+vnoremap <A-k> <Down>
+
+nnoremap <C-A-j> 0
+nnoremap <C-A-l> $
+
+inoremap <C-A-j> <Esc>0i
+inoremap <C-A-l> <Esc>$i
+
+vnoremap <C-A-j> 0
+vnoremap <C-A-l> $
 
