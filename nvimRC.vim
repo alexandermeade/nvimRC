@@ -73,6 +73,23 @@ command! Orc call Orc()
 
 
 call plug#begin('~/.local/share/nvim/plugged')
+   "installed with nvim-cmp
+   Plug 'neovim/nvim-lspconfig'
+   Plug 'hrsh7th/cmp-nvim-lsp'
+   Plug 'hrsh7th/cmp-buffer'
+   Plug 'hrsh7th/cmp-path'
+   Plug 'hrsh7th/cmp-cmdline'
+   Plug 'hrsh7th/nvim-cmp'
+
+   " For vsnip users.
+   Plug 'hrsh7th/cmp-vsnip'
+   Plug 'hrsh7th/vim-vsnip'
+   " end nvim-cm
+   Plug 'nvim-treesitter/nvim-treesitter'
+   Plug 'elihunter173/dirbuf.nvim'
+   Plug 'nvim-tree/nvim-web-devicons' " OPTIONAL: for file icons
+   Plug 'lewis6991/gitsigns.nvim' " OPTIONAL: for git status
+   Plug 'romgrk/barbar.nvim'
    Plug 'evanleck/vim-svelte', 
    Plug 'mg979/vim-visual-multi', {'branch': 'master'}  
    Plug 'alexandermeade/skibHighlight'
@@ -94,7 +111,69 @@ call plug#begin('~/.local/share/nvim/plugged')
    Plug 'kien/rainbow_parentheses.vim'
    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
    Plug 'flazz/vim-colorschemes'
+   Plug 'xiyaowong/transparent.nvim'
 call plug#end()
+
+"tab bar shit here
+"
+" Move to previous/next
+nnoremap <silent>    <A-,> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <A-.> <Cmd>BufferNext<CR>
+
+" Re-order to previous/next
+nnoremap <silent>    <A-<> <Cmd>BufferMovePrevious<CR>
+nnoremap <silent>    <A->> <Cmd>BufferMoveNext<CR>
+
+" Goto buffer in position...
+nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
+nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
+nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
+nnoremap <silent>    <A-4> <Cmd>BufferGoto 4<CR>
+nnoremap <silent>    <A-5> <Cmd>BufferGoto 5<CR>
+nnoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
+nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
+nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
+nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
+nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
+
+" Pin/unpin buffer
+nnoremap <silent>    <A-p> <Cmd>BufferPin<CR>
+
+" Goto pinned/unpinned buffer
+"                          :BufferGotoPinned
+"                          :BufferGotoUnpinned
+
+" Close buffer
+nnoremap <silent>    <A-c> <Cmd>BufferClose<CR>
+" Restore buffer
+nnoremap <silent>    <A-s-c> <Cmd>BufferRestore<CR>
+
+" Wipeout buffer
+"                          :BufferWipeout
+" Close commands
+"                          :BufferCloseAllButCurrent
+"                          :BufferCloseAllButVisible
+"                          :BufferCloseAllButPinned
+"                          :BufferCloseAllButCurrentOrPinned
+"                          :BufferCloseBuffersLeft
+"                          :BufferCloseBuffersRight
+
+" Magic buffer-picking mode
+nnoremap <silent> <C-p>    <Cmd>BufferPick<CR>
+nnoremap <silent> <C-s-p>  <Cmd>BufferPickDelete<CR>
+
+" Sort automatically by...
+nnoremap <silent> <Space>bb <Cmd>BufferOrderByBufferNumber<CR>
+nnoremap <silent> <Space>bn <Cmd>BufferOrderByName<CR>
+nnoremap <silent> <Space>bd <Cmd>BufferOrderByDirectory<CR>
+nnoremap <silent> <Space>bl <Cmd>BufferOrderByLanguage<CR>
+nnoremap <silent> <Space>bw <Cmd>BufferOrderByWindowNumber<CR>
+
+" Other:
+":BarbarEnable - enables barbar (enabled by default)
+" :BarbarDisable - very bad command, should never be used
+"
+"'''end of tab bar shit
 
 au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
 au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
@@ -112,12 +191,15 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "colorscheme
 "colorscheme gruvbox8_soft
-colorscheme onedark
+"colorscheme onedark
+
+colorscheme gruvbox8_soft
+"
 "mapping
 nnoremap ` :NERDTree<CR>
 nnoremap ] <C-w>w<CR>l
 nnoremap [ <C-w>h<CR>h
-nnoremap w :w<CR>
+"nnoremap w :w<CR>
 nnoremap q :w<CR>:q<CR>
 nnoremap l: $
 
