@@ -112,6 +112,7 @@ call plug#begin('~/.local/share/nvim/plugged')
    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
    Plug 'flazz/vim-colorschemes'
    Plug 'xiyaowong/transparent.nvim'
+   Plug 'pboettch/vim-cmake-syntax'
 call plug#end()
 
 "tab bar shit here
